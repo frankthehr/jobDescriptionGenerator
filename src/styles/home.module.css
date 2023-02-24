@@ -20,8 +20,18 @@
   color: white;
   font-size: 1.25rem;
   background-color: rgb(61, 61, 61);
+  margin-bottom: 0.25rem;
 }
 
 .form span {
   min-height: 1rem;
+}
+
+.form h1 {
+  color: rgb(61, 61, 61);
+}
+
+.form h5 {
+  color: rgb(61, 61, 61);
+  margin-bottom: 0.5rem;
 }

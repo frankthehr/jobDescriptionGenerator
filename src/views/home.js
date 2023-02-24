@@ -56,13 +56,15 @@ const Home = () => {
   return (
     <div className={styles.home}>
       <div className={styles.form}>
+        <h1>Job Description Generator</h1>
+        <h5>Write the job title you need below and press Enter</h5>
         <input
           type="text"
-          placeholder="Ask me anything..."
+          placeholder="Job Descripton"
           onChange={(e) => setPrompt(e.target.value)}
           onKeyDown={(e) => sendPrompt(e)}
         />
-        <span>{ loading ? loading : " "}</span>
+        <span>{ loading ? "Your job description is being generated" : " "}</span>
         { answer && <span>{ answer }</span>}
       </div>
     </div>
