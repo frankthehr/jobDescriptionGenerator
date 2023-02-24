@@ -6,10 +6,6 @@ const NotFound = () => {
 
   const { random } = useContext(AppContext);
 
-  useEffect(() => {
-    document.title = '404';
-  }, []);
-
   return (
     <div>
       Error 404
