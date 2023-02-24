@@ -42,3 +42,8 @@ h6,
 span {
   overflow-wrap: break-word;
 }
+
+/* General Temporaary Styling */
+* {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
