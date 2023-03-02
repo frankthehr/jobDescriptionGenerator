@@ -1,13 +1,16 @@
 import styles from '../styles/home.module.css';
 import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '../App';
+import Checkbox from '../components/checkbox';
 
 const NewHome = () => {
 
   const { random } = useContext(AppContext);
 
   const [title, setTitle] = useState(undefined);
+  const [years, setYears] = useState(undefined);
   const [location, setLocation] = useState(undefined);
+  const [email, setEmail] = useState(undefined);
   const [answer, setAnswer] = useState(false);
   const [loading, setLoading] = useState(undefined);
 
@@ -22,7 +25,12 @@ const NewHome = () => {
       const request = {
         method: "POST",
         headers: { "Content-Type": "application/json"},
-        body: JSON.stringify({prompt})
+        body: JSON.stringify({
+          title,
+          years,
+          location,
+          email
+        })
       }
 
       const response = await fetch("http://localhost:5000/jobdescription", request);
@@ -55,40 +63,50 @@ const NewHome = () => {
     <div className={styles.home}>
       <div className={styles.form}>
         <h1>Job Description Generator</h1>
-        <h5>Write the job title you need below and press Enter</h5>
-        <input
-          type="text"
-          placeholder="Job Title"
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Job Location"
-          onChange={(e) => setLocation(e.target.value)}
-        />
-        <ul className={styles.requirements}>
-          { requirements.map((requirement, i) => (
-            <li>
-              <input type="checkbox" id={requirement} name={requirement} />
-              <label for={requirement}>{ requirement }</label>
-            </li>
-          ))}
-        </ul>
-        <button onClick={sendPrompt}></button>
-      </div>
-      <div className={styles.answer}>
-        { loading &&
-            <div className={styles.loading}>
-              <span>Your job description is being generated</span>
-              <svg width="24" height="24" viewBox="0 0 24 24">
-                <path fill="none" stroke="currentColor" strokeDasharray="15" strokeDashoffset="15" strokeLinecap="round" strokeWidth="2" d="M12 3C16.9706 3 21 7.02944 21 12">
-                  <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/>
-                  <animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/>
-                </path>
-              </svg>
-            </div>
-          }
-          { answer && <span>{ answer }</span>}
+
+        <div className={styles.title}>
+          <label htmlFor="jd-title">Job title</label>
+          <input
+            type="text"
+            id="jd-title"
+            placeholder="Head Chef"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+
+        <div className={styles.years}>
+          <label htmlFor="jd-number">Years of Experience</label>
+          <input
+            type="number"
+            id="jd-number"
+            placeholder="3"
+            onChange={(e) => setYears(e.target.value)}
+          />
+        </div>
+
+        <div className={styles.location}>
+          <label htmlFor="jd-location">Location of the role</label>
+          <input
+            type="text"
+            id="jd-location"
+            placeholder="Dublin, Ireland"
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </div>
+
+        <div className={styles.email}>
+          <label htmlFor="jd-email">Contact Email</label>
+          <input
+            type="text"
+            id="jd-email"
+            placeholder="youremail@email.com"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+        <button onClick={sendPrompt}>
+          { loading ? 'Creating' : 'Create Job Description' }
+        </button>
       </div>
     </div>
   )

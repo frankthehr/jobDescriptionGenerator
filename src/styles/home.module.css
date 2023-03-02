@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   padding: 2rem;
 }
 
@@ -9,30 +10,68 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
+  width: 100%;
   padding: 1rem;
   margin-bottom: 1rem;
+  border: 1px dashed var(--green);
   border-radius: 0.5rem;
-  background-color: rgb(238, 235, 231);
-  box-shadow: rgba(149, 157, 165, 0.2) 0rem 0rem 1rem;
+  background-color: var(--grey);
+  color: var(--green);
+}
+
+.form header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
 }
 
 .form input {
-  width: 20rem;
-  height: 2rem;
+  width: 100%;
+  height: 3rem;
+  min-width: 20rem;
   padding: 0.5rem;
   border-radius: 0.25rem;
-  color: white;
+  color: var(--green);
   font-size: 1.25rem;
   background-color: rgb(61, 61, 61);
   margin-bottom: 0.25rem;
 }
 
-.form span {
-  min-height: 1rem;
+.form label {
+  font-size: var(--fs-base);
+  margin-bottom: 0.25rem;
+}
+
+.form button {
+  padding: 1rem 2rem;
+  border: 3px solid var(--green);
+  color: var(--green);
+  font-size: var(--fs-md);
+  background-color: inherit;
+  transition: all ease-in-out 300ms;
+}
+
+.form button:hover {
+  color: var(--grey);
+  background-color: var(--green);
+  transition: all ease-in-out 300ms;
+  cursor: pointer;
 }
 
 .form h1 {
-  color: rgb(61, 61, 61);
+  font-size: var(--fs-xl);
+}
+
+.form span {
+  min-height: 1rem;
 }
 
 .form h5 {
