@@ -16,8 +16,6 @@ const NewHome = () => {
 
   const [buttonURL, setButtonURL] = useState('');
 
-  const requirements = ['Clown', 'Show', 'Lord', 'Heck', 'Yikes']
-
   const sendPrompt = async () => {
 
     try {
