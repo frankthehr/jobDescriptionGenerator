@@ -46,49 +46,13 @@ const NewHome = () => {
         throw new Error("Something went wrong pal!")
       }
 
-      // const responseJSON = await response.json();
-
-      // console.log(responseJSON);
-
       const responseBuffer = await response.arrayBuffer();
 
-      console.log(responseBuffer);
+      const pdfBlob = new Blob([responseBuffer], {type: 'application/pdf'});
 
-      const pdf_file = new File([responseBuffer], 'thisisthefile.pdf', {type: 'application/pdf'});
-
-      const pdfblob = new Blob([responseBuffer], {type: 'application/pdf'});
-
-      const href = URL.createObjectURL(pdfblob);
+      const href = URL.createObjectURL(pdfBlob);
 
       setButtonURL(href);
-
-      // const responseCompletion = responseJSON.completion;
-
-      // const parsed = responseJSON.parsed;
-
-      // const parsedJSON = JSON.parse(parsed);
-
-      // const replaced = responseJSON.replaced;
-
-      // const replacedJSON = JSON.parse(replaced);
-
-      // const jsonData = responseJSON.jsonData;
-
-      // console.log(responseJSON);
-
-      // console.log(responseCompletion);
-
-      // console.log(parsedJSON);
-
-      // console.log(typeof parsedJSON);
-
-      // console.log(replacedJSON);
-
-      // console.log(typeof replacedJSON);
-
-      // console.log(jsonData);
-
-      // setAnswer(responseCompletion);
 
       setLoading(false);
       setAnswer(true);
@@ -145,7 +109,7 @@ const NewHome = () => {
         </div>
 
         <button onClick={sendPrompt}>
-          { loading ? 'Creating' : 'Create Job Description' }
+          { loading ? 'Creating...' : 'Create Job Description' }
         </button>
 
         { answer &&

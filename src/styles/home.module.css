@@ -68,6 +68,11 @@
   cursor: pointer;
 }
 
+.form a {
+  text-decoration: none;
+  margin-top: 1rem;
+}
+
 .form h1 {
   font-size: var(--fs-xl);
 }
