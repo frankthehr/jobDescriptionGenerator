@@ -50,7 +50,8 @@
   margin-bottom: 0.25rem;
 }
 
-.form button {
+.form button,
+.form a {
   padding: 1rem 2rem;
   border: 3px solid var(--green);
   color: var(--green);
@@ -59,7 +60,8 @@
   transition: all ease-in-out 300ms;
 }
 
-.form button:hover {
+.form button:hover,
+.form a:hover {
   color: var(--grey);
   background-color: var(--green);
   transition: all ease-in-out 300ms;

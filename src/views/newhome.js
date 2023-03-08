@@ -14,6 +14,8 @@ const NewHome = () => {
   const [answer, setAnswer] = useState(false);
   const [loading, setLoading] = useState(undefined);
 
+  const [buttonURL, setButtonURL] = useState('');
+
   const requirements = ['Clown', 'Show', 'Lord', 'Heck', 'Yikes']
 
   const sendPrompt = async () => {
@@ -44,36 +46,52 @@ const NewHome = () => {
         throw new Error("Something went wrong pal!")
       }
 
-      const responseJSON = await response.json();
+      // const responseJSON = await response.json();
 
-      const responseCompletion = responseJSON.completion;
+      // console.log(responseJSON);
 
-      const parsed = responseJSON.parsed;
+      const responseBuffer = await response.arrayBuffer();
 
-      const parsedJSON = JSON.parse(parsed);
+      console.log(responseBuffer);
 
-      const replaced = responseJSON.replaced;
+      const pdf_file = new File([responseBuffer], 'thisisthefile.pdf', {type: 'application/pdf'});
 
-      const replacedJSON = JSON.parse(replaced);
+      const pdfblob = new Blob([responseBuffer], {type: 'application/pdf'});
 
-      const jsonData = responseJSON.jsonData;
+      const href = URL.createObjectURL(pdfblob);
 
-      console.log(responseJSON);
+      setButtonURL(href);
 
-      console.log(responseCompletion);
+      // const responseCompletion = responseJSON.completion;
 
-      console.log(parsedJSON);
+      // const parsed = responseJSON.parsed;
 
-      console.log(typeof parsedJSON);
+      // const parsedJSON = JSON.parse(parsed);
 
-      console.log(replacedJSON);
+      // const replaced = responseJSON.replaced;
 
-      console.log(typeof replacedJSON);
+      // const replacedJSON = JSON.parse(replaced);
 
-      console.log(jsonData);
+      // const jsonData = responseJSON.jsonData;
 
-      setAnswer(responseCompletion);
+      // console.log(responseJSON);
+
+      // console.log(responseCompletion);
+
+      // console.log(parsedJSON);
+
+      // console.log(typeof parsedJSON);
+
+      // console.log(replacedJSON);
+
+      // console.log(typeof replacedJSON);
+
+      // console.log(jsonData);
+
+      // setAnswer(responseCompletion);
+
       setLoading(false);
+      setAnswer(true);
 
     } catch (error) {
       setLoading(false);
@@ -129,6 +147,12 @@ const NewHome = () => {
         <button onClick={sendPrompt}>
           { loading ? 'Creating' : 'Create Job Description' }
         </button>
+
+        { answer &&
+          <a href={buttonURL} download="yay.pdf">
+            Open PDF
+          </a>
+        }
       </div>
     </div>
   )
