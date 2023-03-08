@@ -48,7 +48,29 @@ const NewHome = () => {
 
       const responseCompletion = responseJSON.completion;
 
+      const parsed = responseJSON.parsed;
+
+      const parsedJSON = JSON.parse(parsed);
+
+      const replaced = responseJSON.replaced;
+
+      const replacedJSON = JSON.parse(replaced);
+
+      const jsonData = responseJSON.jsonData;
+
+      console.log(responseJSON);
+
       console.log(responseCompletion);
+
+      console.log(parsedJSON);
+
+      console.log(typeof parsedJSON);
+
+      console.log(replacedJSON);
+
+      console.log(typeof replacedJSON);
+
+      console.log(jsonData);
 
       setAnswer(responseCompletion);
       setLoading(false);
