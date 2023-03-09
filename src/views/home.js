@@ -1,5 +1,5 @@
 import styles from '../styles/home.module.css';
-import { useState, useEffect, useContext } from 'react';
+import { useRef, useState, useContext } from 'react';
 import { AppContext } from '../App';
 
 const Home = () => {
@@ -13,6 +13,20 @@ const Home = () => {
   const [answer, setAnswer] = useState(false);
   const [loading, setLoading] = useState(undefined);
   const [buttonURL, setButtonURL] = useState('');
+  const [filename, setFilename] = useState('');
+
+  const downloadPDFRef = useRef(null);
+
+  const triggerDownload = () => {
+    downloadPDFRef.current.click();
+  }
+
+  // Create unique hash for use in filename
+  const randomHash = () => {
+    let hash = (Math.random() + 1).toString(36).substring(7);
+    console.log(hash);
+    return hash;
+  }
 
   // Function to create POST request, call backend and create PDF from response
   const sendPrompt = async () => {
@@ -38,8 +52,6 @@ const Home = () => {
 
       console.log('Reponse fetched');
 
-      console.log(response);
-
       // Throw error if request fails
       if (!response.ok) {
         console.log('Response not OK')
@@ -55,11 +67,24 @@ const Home = () => {
       // Create URL to reference PDF blob
       const href = URL.createObjectURL(pdfBlob);
 
-      // Set buttonURL to PDF blob URL
+      // Create unique hash
+      const hash = randomHash();
+
+      // Create filename
+      const hashedFilename = `jobdescription.${hash}.pdf`
+
+      // Set filename to hashedFilename & buttonURL to PDF blob URL
+      setFilename(hashedFilename);
       setButtonURL(href);
+
+      setTimeout(() => {
+        
+      }, 100);
 
       setLoading(false);
       setAnswer(true);
+
+      triggerDownload();
 
     } catch (error) {
       setLoading(false);
@@ -112,15 +137,30 @@ const Home = () => {
           />
         </div>
 
-        <button onClick={sendPrompt}>
-          { loading ? 'Creating...' : 'Create Job Description' }
-        </button>
-
-        { answer &&
-          <a href={buttonURL} download="yay.pdf">
-            Open PDF
-          </a>
+        { !loading && 
+          <button onClick={sendPrompt}>
+            <span>Create Job Description</span>
+          </button>
         }
+
+        { loading && 
+          <button>
+            <span>Creating</span>
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path fill="none" stroke="currentColor" strokeDasharray="15" strokeDashoffset="15" strokeLinecap="round" strokeWidth="2" d="M12 3C16.9706 3 21 7.02944 21 12">
+                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/>
+                <animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/>
+              </path>
+            </svg>
+          </button>
+        }
+
+        <a 
+          className={styles.downloadButton} 
+          href={buttonURL}
+          ref={downloadPDFRef}
+          download={filename}>
+        </a>
       </div>
     </div>
   )

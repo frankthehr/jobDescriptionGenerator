@@ -50,8 +50,8 @@
   margin-bottom: 0.25rem;
 }
 
-.form button,
-.form a {
+.form a,
+.form button {
   padding: 1rem 2rem;
   border: 3px solid var(--green);
   color: var(--green);
@@ -60,8 +60,8 @@
   transition: all ease-in-out 300ms;
 }
 
-.form button:hover,
-.form a:hover {
+.form a:hover,
+.form button:hover {
   color: var(--grey);
   background-color: var(--green);
   transition: all ease-in-out 300ms;
@@ -70,7 +70,15 @@
 
 .form a {
   text-decoration: none;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
+}
+
+.form button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .form h1 {
@@ -96,4 +104,8 @@
   width: 1rem;
   height: 1rem;
   margin-left: 0.5rem;
+}
+
+.downloadButton {
+  display: none;
 }
