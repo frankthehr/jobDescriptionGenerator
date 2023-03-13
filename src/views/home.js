@@ -1,5 +1,5 @@
 import styles from '../styles/home.module.css';
-import { useRef, useState, useContext } from 'react';
+import { useRef, useState, useContext, useEffect } from 'react';
 import { AppContext } from '../App';
 
 const Home = () => {
@@ -10,13 +10,24 @@ const Home = () => {
   const [years, setYears] = useState(undefined);
   const [location, setLocation] = useState(undefined);
   const [email, setEmail] = useState(undefined);
-  const [answer, setAnswer] = useState(false);
   const [loading, setLoading] = useState(undefined);
   const [buttonURL, setButtonURL] = useState('');
   const [filename, setFilename] = useState('');
 
   const downloadPDFRef = useRef(null);
 
+  // UseEffect which triggers when buttonURL is changed and triggers the download of the file alongside UI changes
+  useEffect(() => {
+    if (!buttonURL) return;
+
+    // Update UI state
+    setLoading(false);
+
+    // Automatically click download button
+    triggerDownload();
+  }, [buttonURL])
+
+  // Function to trigger click on download element
   const triggerDownload = () => {
     downloadPDFRef.current.click();
   }
@@ -58,33 +69,34 @@ const Home = () => {
         throw new Error("Something went wrong pal!")
       }
 
-      // Reads response stream and returns a promise which resolves with an Array Buffer (An array buffer is a low-level data structure in programming that represents a fixed-length, contiguous memory area of raw binary data. It is a type of buffer that is commonly used for handling large amounts of data efficiently, especially when dealing with multimedia data such as images, audio, and video.)
-      const responseBuffer = await response.arrayBuffer();
+      const pdfdata = await response.pdf;
 
-      // Create blob with PDF MIME type from response array buffer. A blob (binary short object) is a data type used to represent large binary data like images or files.
-      const pdfBlob = new Blob([responseBuffer], {type: 'application/pdf'});
-
-      // Create URL to reference PDF blob
-      const href = URL.createObjectURL(pdfBlob);
+      console.log(pdfdata);
 
       // Create unique hash
       const hash = randomHash();
 
       // Create filename
-      const hashedFilename = `jobdescription.${hash}.pdf`
+      const hashedFilename = `jobdescription.${hash}.pdf`;
 
-      // Set filename to hashedFilename & buttonURL to PDF blob URL
+      // Set filename to hashedFilename
       setFilename(hashedFilename);
+
+      // Reads response stream and returns a promise which resolves with an Array Buffer (An array buffer is a low-level data structure in programming that represents a fixed-length, contiguous memory area of raw binary data. It is a type of buffer that is commonly used for handling large amounts of data efficiently, especially when dealing with multimedia data such as images, audio, and video.)
+      const responseBuffer = await response.arrayBuffer();
+
+      console.log(responseBuffer);
+
+      // Create blob with PDF MIME type from response array buffer. A blob (binary short object) is a data type used to represent large binary data like images or files.
+      const pdfBlob = new Blob([responseBuffer], {type: 'application/pdf'});
+
+      // const pdfFile = new File([responseBuffer], 'jobdescriptionfile.pdf', {type: 'application/pdf', lastModified: Date.now()});
+
+      // Create URL to reference PDF blob
+      const href = URL.createObjectURL(pdfBlob);
+
+      // Set buttonURL to the link for the PDF file (triggers useEffect)
       setButtonURL(href);
-
-      setTimeout(() => {
-        
-      }, 100);
-
-      setLoading(false);
-      setAnswer(true);
-
-      triggerDownload();
 
     } catch (error) {
       setLoading(false);
