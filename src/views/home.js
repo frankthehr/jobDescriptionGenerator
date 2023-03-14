@@ -35,7 +35,6 @@ const Home = () => {
   // Create unique hash for use in filename
   const randomHash = () => {
     let hash = (Math.random() + 1).toString(36).substring(7);
-    console.log(hash);
     return hash;
   }
 
