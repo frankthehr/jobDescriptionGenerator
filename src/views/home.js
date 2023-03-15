@@ -109,7 +109,7 @@ const Home = () => {
         <h1>Job Description Generator</h1>
 
         <div className={styles.title}>
-          <label htmlFor="jd-title">Job title</label>
+          <label htmlFor="jd-title">Job Title</label>
           <input
             type="text"
             id="jd-title"
@@ -124,6 +124,8 @@ const Home = () => {
             type="number"
             id="jd-number"
             placeholder="3"
+            min="0"
+            max="100"
             onChange={(e) => setYears(e.target.value)}
           />
         </div>
@@ -135,6 +137,16 @@ const Home = () => {
             id="jd-location"
             placeholder="Dublin, Ireland"
             onChange={(e) => setLocation(e.target.value)}
+          />
+        </div>
+
+        <div className={styles.email}>
+          <label htmlFor="jd-email">Contact Email</label>
+          <input
+            type="text"
+            id="jd-email"
+            placeholder="youremail@email.com"
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
