@@ -1,6 +1,7 @@
 import styles from '../styles/home.module.css';
 import { useRef, useState, useContext, useEffect } from 'react';
 import { AppContext } from '../App';
+import Dropdown from '../components/dropdown';
 
 const Home = () => {
 
@@ -15,6 +16,17 @@ const Home = () => {
   const [filename, setFilename] = useState('');
 
   const downloadPDFRef = useRef(null);
+
+  const [actionComp, setActionComp] = useState(0);
+  const [composureComp, setComposureComp] = useState(0);
+  const [convictionComp, setConvictionComp] = useState(0);
+  const [creativityComp, setCreativityComp] = useState(0);
+  const [ambiguityComp, setAmbiguityComp] = useState(0);
+  const [integrityComp, setIntegrityComp] = useState(0);
+
+  const changeDropdown = (e, set) => {
+    set(e.target.value);
+  }
 
   // UseEffect which triggers when buttonURL is changed and triggers the download of the file alongside UI changes
   useEffect(() => {
@@ -53,7 +65,8 @@ const Home = () => {
           title,
           years,
           location,
-          email
+          email,
+          actionComp,
         })
       };
 
@@ -150,15 +163,14 @@ const Home = () => {
           />
         </div>
 
-        <div className={styles.email}>
-          <label htmlFor="jd-email">Contact Email</label>
-          <input
-            type="text"
-            id="jd-email"
-            placeholder="youremail@email.com"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+        <Dropdown
+          competency={"Action Orientated"}
+          name={"actionComp"}
+          state={actionComp}
+          set={setActionComp}
+          change={changeDropdown}
+
+        />
 
         { !loading && 
           <button onClick={sendPrompt}>
