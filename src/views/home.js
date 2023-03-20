@@ -67,6 +67,11 @@ const Home = () => {
           location,
           email,
           actionComp,
+          composureComp,
+          convictionComp,
+          creativityComp,
+          ambiguityComp,
+          integrityComp
         })
       };
 
@@ -78,7 +83,7 @@ const Home = () => {
       // Throw error if request fails
       if (!response.ok) {
         console.log('Response not OK')
-        throw new Error("Something went wrong pal!")
+        throw new Error("Something went wrong!")
       }
 
       const pdfdata = await response.pdf;
@@ -168,6 +173,51 @@ const Home = () => {
           name={"actionComp"}
           state={actionComp}
           set={setActionComp}
+          change={changeDropdown}
+
+        />
+
+        <Dropdown
+          competency={"Composure"}
+          name={"composureComp"}
+          state={composureComp}
+          set={setComposureComp}
+          change={changeDropdown}
+
+        />
+
+        <Dropdown
+          competency={"Conviction and Courage"}
+          name={"convictionComp"}
+          state={convictionComp}
+          set={setConvictionComp}
+          change={changeDropdown}
+
+        />
+
+        <Dropdown
+          competency={"Creativity"}
+          name={"creativityComp"}
+          state={creativityComp}
+          set={setCreativityComp}
+          change={changeDropdown}
+
+        />
+
+        <Dropdown
+          competency={"Dealing with Ambiguity"}
+          name={"ambiguityComp"}
+          state={ambiguityComp}
+          set={setAmbiguityComp}
+          change={changeDropdown}
+
+        />
+
+        <Dropdown
+          competency={"Integrity and Trustworthiness"}
+          name={"integrityComp"}
+          state={integrityComp}
+          set={setIntegrityComp}
           change={changeDropdown}
 
         />
