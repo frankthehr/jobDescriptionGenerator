@@ -1,4 +1,4 @@
-import styles from '../styles/checkbox.module.css';
+import styles from '../styles/home.module.css';
 import { useEffect, useContext, useState } from 'react';
 import { AppContext } from '../App';
 
