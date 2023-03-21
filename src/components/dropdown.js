@@ -1,6 +1,4 @@
 import styles from '../styles/home.module.css';
-import { useEffect, useContext, useState } from 'react';
-import { AppContext } from '../App';
 
 const Dropdown = ({ competency, name, state, set, change }) => {
 

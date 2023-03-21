@@ -2,6 +2,8 @@ import styles from '../styles/home.module.css';
 import { useRef, useState, useContext, useEffect } from 'react';
 import { AppContext } from '../App';
 import Dropdown from '../components/dropdown';
+import StudyDropdown from '../components/studydropdown';
+import EducationDropdown from '../components/educationdropdown';
 
 const Home = () => {
 
@@ -11,11 +13,9 @@ const Home = () => {
   const [years, setYears] = useState(undefined);
   const [location, setLocation] = useState(undefined);
   const [email, setEmail] = useState(undefined);
-  const [loading, setLoading] = useState(undefined);
-  const [buttonURL, setButtonURL] = useState('');
-  const [filename, setFilename] = useState('');
 
-  const downloadPDFRef = useRef(null);
+  const [education, setEducation] = useState(0);
+  const [study, setStudy] = useState(0);
 
   const [actionComp, setActionComp] = useState(0);
   const [composureComp, setComposureComp] = useState(0);
@@ -23,6 +23,14 @@ const Home = () => {
   const [creativityComp, setCreativityComp] = useState(0);
   const [ambiguityComp, setAmbiguityComp] = useState(0);
   const [integrityComp, setIntegrityComp] = useState(0);
+  const [intellectualComp, setIntellectualComp] = useState(0);
+  const [confidenceComp, setConfidenceComp] = useState(0);
+
+  const [loading, setLoading] = useState(undefined);
+  const [buttonURL, setButtonURL] = useState('');
+  const [filename, setFilename] = useState('');
+
+  const downloadPDFRef = useRef(null);
 
   const changeDropdown = (e, set) => {
     set(e.target.value);
@@ -64,14 +72,18 @@ const Home = () => {
         body: JSON.stringify({
           title,
           years,
-          location,
           email,
+          study,
+          location,
+          education,
           actionComp,
           composureComp,
           convictionComp,
           creativityComp,
           ambiguityComp,
-          integrityComp
+          integrityComp,
+          intellectualComp,
+          confidenceComp
         })
       };
 
@@ -148,6 +160,18 @@ const Home = () => {
           />
         </div>
 
+        <EducationDropdown
+          state={education}
+          set={setEducation}
+          change={changeDropdown}
+        />
+
+        <StudyDropdown
+          state={study}
+          set={setStudy}
+          change={changeDropdown}
+        />
+
         <div className={styles.location}>
           <label htmlFor="jd-location">Location of the role</label>
           <input
@@ -218,6 +242,24 @@ const Home = () => {
           name={"integrityComp"}
           state={integrityComp}
           set={setIntegrityComp}
+          change={changeDropdown}
+
+        />
+
+        <Dropdown
+          competency={"Intellectual Horsepower"}
+          name={"intellectualComp"}
+          state={intellectualComp}
+          set={setIntellectualComp}
+          change={changeDropdown}
+
+        />
+
+        <Dropdown
+          competency={"Self Confidence"}
+          name={"confidenceComp"}
+          state={confidenceComp}
+          set={setConfidenceComp}
           change={changeDropdown}
 
         />
