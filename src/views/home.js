@@ -203,6 +203,7 @@ const Home = () => {
 
         <Dropdown
           competency={"Composure"}
+          description={"This is the description"}
           name={"composureComp"}
           state={composureComp}
           set={setComposureComp}

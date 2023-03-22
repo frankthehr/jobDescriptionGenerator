@@ -1,10 +1,26 @@
 import styles from '../styles/home.module.css';
+import { useState } from 'react';
+import AnimateHeight from 'react-animate-height';
 
-const Dropdown = ({ competency, name, state, set, change }) => {
+const Dropdown = ({ competency, description, name, state, set, change }) => {
+
+  const open = 'auto';
+  const closed = 0;
+  const [height, setHeight] = useState(closed);
 
   return (
     <div className={styles.dropdown}>
-          <label htmlFor={name}>{ competency }</label>
+          <label 
+            htmlFor={name}
+            onClick={() => setHeight(height === closed ? open : closed)}
+          >
+            { competency }
+          </label>
+
+          <AnimateHeight className={styles.description} height={height} duration={300}>
+            <span>{ description }</span>
+          </AnimateHeight>
+
           <select 
             id={name}
             value={state} 

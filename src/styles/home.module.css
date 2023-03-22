@@ -141,6 +141,10 @@
   cursor: pointer;
 }
 
+.dropdown .description {
+  margin-bottom: 0.25rem;
+}
+
 /* Focus Styling */
 .form input:focus,
 .dropdown select:focus {
