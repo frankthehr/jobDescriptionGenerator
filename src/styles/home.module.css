@@ -133,8 +133,34 @@
 }
 
 .dropdown label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.2rem;
   font-size: var(--fs-base);
   margin-bottom: 0.25rem;
+}
+
+.dropdown svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: var(--white);
+  padding-top: 0.25rem;
+}
+
+.dropdown .arrowUp {
+  transform: rotate(-180deg);
+  transition: all ease-in-out 250ms;
+  padding-top: 0rem;
+  padding-bottom: 0.25rem;
+}
+
+.dropdown .arrowDown {
+  transform: rotate(0deg);
+  transition: all ease-in-out 250ms;
+  padding-top: 0.25rem;
+  padding-bottom: 0rem;
 }
 
 .dropdown option:hover {

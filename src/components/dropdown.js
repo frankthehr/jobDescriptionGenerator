@@ -4,6 +4,8 @@ import AnimateHeight from 'react-animate-height';
 
 const Dropdown = ({ competency, description, name, state, set, change }) => {
 
+  const arrow = false;
+
   const open = 'auto';
   const closed = 0;
   const [height, setHeight] = useState(closed);
@@ -14,12 +16,19 @@ const Dropdown = ({ competency, description, name, state, set, change }) => {
             htmlFor={name}
             onClick={() => setHeight(height === closed ? open : closed)}
           >
-            { competency }
+            <span>{ competency }</span>
+            
+            <svg className={`${styles.dropdownArrow} ${height ? styles.arrowUp : styles.arrowDown}`} viewBox="0 0 24 24">
+              <path d="m12 15.4l-6-6L7.4 8l4.6 4.6L16.6 8L18 9.4l-6 6Z"/>
+            </svg>
+
           </label>
 
-          <AnimateHeight className={styles.description} height={height} duration={300}>
+          { description &&
+            <AnimateHeight className={styles.description} height={height} duration={300}>
             <span>{ description }</span>
-          </AnimateHeight>
+            </AnimateHeight>
+          }
 
           <select 
             id={name}
@@ -31,7 +40,6 @@ const Dropdown = ({ competency, description, name, state, set, change }) => {
             <option value={2}>Level 2</option>
             <option value={3}>Level 3</option>
             <option value={4}>Level 4</option>
-            <option value={5}>Level 5</option>
           </select>
         </div>
   )

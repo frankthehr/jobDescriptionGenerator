@@ -25,6 +25,15 @@ const Home = () => {
   const [integrityComp, setIntegrityComp] = useState(0);
   const [intellectualComp, setIntellectualComp] = useState(0);
   const [confidenceComp, setConfidenceComp] = useState(0);
+  const [developmentComp, setDevelopmentComp] = useState(0);
+  const [decisionComp, setDecisionComp] = useState(0);
+  const [resultsComp, setResultsComp] = useState(0);
+  const [systemsComp, setSystemsComp] = useState(0);
+  const [performanceComp, setPerformanceComp] = useState(0);
+  const [coordinatingComp, setCoordinatingComp] = useState(0);
+  const [solvingComp, setSolvingComp] = useState(0);
+  const [customerComp, setCustomerComp] = useState(0);
+  const [representingComp, setRepresentingComp] = useState(0);
 
   const [loading, setLoading] = useState(undefined);
   const [buttonURL, setButtonURL] = useState('');
@@ -83,7 +92,16 @@ const Home = () => {
           ambiguityComp,
           integrityComp,
           intellectualComp,
-          confidenceComp
+          confidenceComp,
+          developmentComp,
+          decisionComp,
+          resultsComp,
+          systemsComp,
+          performanceComp,
+          coordinatingComp,
+          solvingComp,
+          customerComp,
+          representingComp
         })
       };
 
@@ -198,17 +216,16 @@ const Home = () => {
           state={actionComp}
           set={setActionComp}
           change={changeDropdown}
-
+          description={"Pursues work with energy, drive, and a strong accomplishment orientation."}
         />
 
         <Dropdown
           competency={"Composure"}
-          description={"This is the description"}
           name={"composureComp"}
           state={composureComp}
           set={setComposureComp}
           change={changeDropdown}
-
+          description={"Maintains a constructive and composed focus in facing and overcoming tough situations."}
         />
 
         <Dropdown
@@ -217,7 +234,7 @@ const Home = () => {
           state={convictionComp}
           set={setConvictionComp}
           change={changeDropdown}
-
+          description={ "Shows a strong sense of certainty and stands firm when appropriate."}
         />
 
         <Dropdown
@@ -226,7 +243,7 @@ const Home = () => {
           state={creativityComp}
           set={setCreativityComp}
           change={changeDropdown}
-
+          description={"Develops original ideas, approaches, and solutions to typical, unusual, or difficult situations or problems."}
         />
 
         <Dropdown
@@ -235,7 +252,7 @@ const Home = () => {
           state={ambiguityComp}
           set={setAmbiguityComp}
           change={changeDropdown}
-
+          description={"Works effectively in situations involving uncertainty or lack of information, and responds flexibly to change"}
         />
 
         <Dropdown
@@ -244,7 +261,7 @@ const Home = () => {
           state={integrityComp}
           set={setIntegrityComp}
           change={changeDropdown}
-
+          description={"Behaves according to high ethical business principles and values"}
         />
 
         <Dropdown
@@ -253,7 +270,7 @@ const Home = () => {
           state={intellectualComp}
           set={setIntellectualComp}
           change={changeDropdown}
-
+          description={"Is bright, intellectually sharp, and learns quickly."}
         />
 
         <Dropdown
@@ -262,7 +279,89 @@ const Home = () => {
           state={confidenceComp}
           set={setConfidenceComp}
           change={changeDropdown}
+          description={"Feels successful in past undertakings and expects to succeed in future activities."}
+        />
 
+  	    <Dropdown
+          competency={"Self Development"}
+          name={"developmentComp"}
+          state={developmentComp}
+          set={setDevelopmentComp}
+          change={changeDropdown}
+          description={"Actively seeks to understand his/her own strengths and weaknesses, and works continuously to improve."}
+        />
+
+        <Dropdown
+          competency={"Decision Making"}
+          name={"decisionComp"}
+          state={decisionComp}
+          set={setDecisionComp}
+          change={changeDropdown}
+          description={"Makes timely, practical, and cost-effective decisions, and facilitates others in doing so."}
+        />
+
+        <Dropdown
+          competency={"Drive for Results"}
+          name={"resultsComp"}
+          state={resultsComp}
+          set={setResultsComp}
+          change={changeDropdown}
+          description={"Continually focuses on achieving positive, concrete results contributing to the business success."}
+        />
+
+        <Dropdown
+          competency={"Managing Systems and Processes"}
+          name={"systemsComp"}
+          state={systemsComp}
+          set={setSystemsComp}
+          change={changeDropdown}
+          description={"Effectively uses systems and processes to measure, monitor, manage, or impact performance."}
+        />
+
+        <Dropdown
+          competency={"Performance Management"}
+          name={"performanceComp"}
+          state={performanceComp}
+          set={setPerformanceComp}
+          change={changeDropdown}
+          description={"Sets clear goals for self or others; assigns responsibility; measures performance; and seeks and delivers feedback to achieve quality, timely results."}
+        />
+
+        <Dropdown
+          competency={"Planning, Organising, and Coordinating"}
+          name={"coordinatingComp"}
+          state={coordinatingComp}
+          set={setCoordinatingComp}
+          change={changeDropdown}
+          description={"Efficiently develops and implements plans to accomplish goals."}
+        />
+
+        <Dropdown
+          competency={"Problem Solving"}
+          name={"solvingComp"}
+          state={solvingComp}
+          set={setSolvingComp}
+          change={changeDropdown}
+          description={"Analyses information and uses it to develop effective solutions to difficult problems or situations."}
+        />
+        
+        <Dropdown
+          competency={"Customer Focus"}
+          name={"customerComp"}
+          state={customerComp}
+          set={setCustomerComp}
+          change={changeDropdown}
+          description={"Investigates and takes action to meet customers' current and future needs."}
+        />
+
+
+        <Dropdown
+          competency={"Representing the Organisation"}
+          name={"representingComp"}
+          state={representingComp}
+          set={setRepresentingComp}
+          change={changeDropdown}
+          description={"Projects a positive and professional image of the Organisation in all contacts."}
         />
 
         { !loading && 
