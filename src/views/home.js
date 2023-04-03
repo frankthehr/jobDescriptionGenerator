@@ -35,11 +35,111 @@ const Home = () => {
   const [customerComp, setCustomerComp] = useState(0);
   const [representingComp, setRepresentingComp] = useState(0);
 
+  const [competencies, setCompetencies] = useState({
+    actionComp: {
+      value: 0,
+      name: "Action Competence",
+      description: "The ability to take initiative and make decisions that lead to positive results."
+    },
+    composureComp: {
+      value: 0,
+      name: "Composure Competence",
+      description: "The ability to remain calm and focused in challenging situations."
+    },
+    convictionComp: {
+      value: 0,
+      name: "Conviction Competence",
+      description: "The ability to hold strong beliefs and values and act accordingly."
+    },
+    creativityComp: {
+      value: 0,
+      name: "Creativity Competence",
+      description: "The ability to generate new ideas and solutions to problems."
+    },
+    ambiguityComp: {
+      value: 0,
+      name: "Ambiguity Competence",
+      description: "The ability to navigate and make decisions in ambiguous or uncertain situations."
+    },
+    integrityComp: {
+      value: 0,
+      name: "Integrity Competence",
+      description: "The ability to act in accordance with ethical principles and values."
+    },
+    intellectualComp: {
+      value: 0,
+      name: "Intellectual Competence",
+      description: "The ability to think critically and analyze complex information."
+    },
+    confidenceComp: {
+      value: 0,
+      name: "Confidence Competence",
+      description: "The ability to believe in oneself and one's abilities."
+    },
+    developmentComp: {
+      value: 0,
+      name: "Development Competence",
+      description: "The ability to continuously improve oneself and learn new skills and knowledge."
+    },
+    decisionComp: {
+      value: 0,
+      name: "Decision Competence",
+      description: "The ability to make informed and effective decisions."
+    },
+    resultsComp: {
+      value: 0,
+      name: "Results Competence",
+      description: "The ability to achieve positive outcomes and meet goals."
+    },
+    systemsComp: {
+      value: 0,
+      name: "Systems Competence",
+      description: "The ability to understand and work within complex systems."
+    },
+    performanceComp: {
+      value: 0,
+      name: "Performance Competence",
+      description: "The ability to perform well and achieve excellence in one's work."
+    },
+    coordinatingComp: {
+      value: 0,
+      name: "Coordinating Competence",
+      description: "The ability to work effectively with others and coordinate efforts towards a common goal."
+    },
+    solvingComp: {
+      value: 0,
+      name: "Problem Solving Competence",
+      description: "The ability to identify and solve problems effectively."
+    },
+    customerComp: {
+      value: 0,
+      name: "Customer Competence",
+      description: "The ability to understand and meet the needs of customers or clients."
+    },
+    representingComp: {
+      value: 0,
+      name: "Representing Competence",
+      description: "The ability to represent oneself or an organization in a positive and professional manner."
+    }
+  });
+  
+
+  function updateCompetenceValue(key, value) {
+    setCompetencies(prevState => ({
+      ...prevState,
+      [key]: {
+        ...prevState[key],
+        value: value
+      }
+    }));
+  }
   const [loading, setLoading] = useState(undefined);
   const [buttonURL, setButtonURL] = useState('');
   const [filename, setFilename] = useState('');
 
   const downloadPDFRef = useRef(null);
+
+
 
   const changeDropdown = (e, set) => {
     set(e.target.value);
@@ -85,23 +185,7 @@ const Home = () => {
           study,
           location,
           education,
-          actionComp,
-          composureComp,
-          convictionComp,
-          creativityComp,
-          ambiguityComp,
-          integrityComp,
-          intellectualComp,
-          confidenceComp,
-          developmentComp,
-          decisionComp,
-          resultsComp,
-          systemsComp,
-          performanceComp,
-          coordinatingComp,
-          solvingComp,
-          customerComp,
-          representingComp
+          competencies
         })
       };
 
@@ -210,159 +294,16 @@ const Home = () => {
           />
         </div>
 
-        <Dropdown
-          competency={"Action Orientated"}
-          name={"actionComp"}
-          state={actionComp}
-          set={setActionComp}
-          change={changeDropdown}
-          description={"Pursues work with energy, drive, and a strong accomplishment orientation."}
-        />
-
-        <Dropdown
-          competency={"Composure"}
-          name={"composureComp"}
-          state={composureComp}
-          set={setComposureComp}
-          change={changeDropdown}
-          description={"Maintains a constructive and composed focus in facing and overcoming tough situations."}
-        />
-
-        <Dropdown
-          competency={"Conviction and Courage"}
-          name={"convictionComp"}
-          state={convictionComp}
-          set={setConvictionComp}
-          change={changeDropdown}
-          description={ "Shows a strong sense of certainty and stands firm when appropriate."}
-        />
-
-        <Dropdown
-          competency={"Creativity"}
-          name={"creativityComp"}
-          state={creativityComp}
-          set={setCreativityComp}
-          change={changeDropdown}
-          description={"Develops original ideas, approaches, and solutions to typical, unusual, or difficult situations or problems."}
-        />
-
-        <Dropdown
-          competency={"Dealing with Ambiguity"}
-          name={"ambiguityComp"}
-          state={ambiguityComp}
-          set={setAmbiguityComp}
-          change={changeDropdown}
-          description={"Works effectively in situations involving uncertainty or lack of information, and responds flexibly to change"}
-        />
-
-        <Dropdown
-          competency={"Integrity and Trustworthiness"}
-          name={"integrityComp"}
-          state={integrityComp}
-          set={setIntegrityComp}
-          change={changeDropdown}
-          description={"Behaves according to high ethical business principles and values"}
-        />
-
-        <Dropdown
-          competency={"Intellectual Horsepower"}
-          name={"intellectualComp"}
-          state={intellectualComp}
-          set={setIntellectualComp}
-          change={changeDropdown}
-          description={"Is bright, intellectually sharp, and learns quickly."}
-        />
-
-        <Dropdown
-          competency={"Self Confidence"}
-          name={"confidenceComp"}
-          state={confidenceComp}
-          set={setConfidenceComp}
-          change={changeDropdown}
-          description={"Feels successful in past undertakings and expects to succeed in future activities."}
-        />
-
-  	    <Dropdown
-          competency={"Self Development"}
-          name={"developmentComp"}
-          state={developmentComp}
-          set={setDevelopmentComp}
-          change={changeDropdown}
-          description={"Actively seeks to understand his/her own strengths and weaknesses, and works continuously to improve."}
-        />
-
-        <Dropdown
-          competency={"Decision Making"}
-          name={"decisionComp"}
-          state={decisionComp}
-          set={setDecisionComp}
-          change={changeDropdown}
-          description={"Makes timely, practical, and cost-effective decisions, and facilitates others in doing so."}
-        />
-
-        <Dropdown
-          competency={"Drive for Results"}
-          name={"resultsComp"}
-          state={resultsComp}
-          set={setResultsComp}
-          change={changeDropdown}
-          description={"Continually focuses on achieving positive, concrete results contributing to the business success."}
-        />
-
-        <Dropdown
-          competency={"Managing Systems and Processes"}
-          name={"systemsComp"}
-          state={systemsComp}
-          set={setSystemsComp}
-          change={changeDropdown}
-          description={"Effectively uses systems and processes to measure, monitor, manage, or impact performance."}
-        />
-
-        <Dropdown
-          competency={"Performance Management"}
-          name={"performanceComp"}
-          state={performanceComp}
-          set={setPerformanceComp}
-          change={changeDropdown}
-          description={"Sets clear goals for self or others; assigns responsibility; measures performance; and seeks and delivers feedback to achieve quality, timely results."}
-        />
-
-        <Dropdown
-          competency={"Planning, Organising, and Coordinating"}
-          name={"coordinatingComp"}
-          state={coordinatingComp}
-          set={setCoordinatingComp}
-          change={changeDropdown}
-          description={"Efficiently develops and implements plans to accomplish goals."}
-        />
-
-        <Dropdown
-          competency={"Problem Solving"}
-          name={"solvingComp"}
-          state={solvingComp}
-          set={setSolvingComp}
-          change={changeDropdown}
-          description={"Analyses information and uses it to develop effective solutions to difficult problems or situations."}
-        />
-        
-        <Dropdown
-          competency={"Customer Focus"}
-          name={"customerComp"}
-          state={customerComp}
-          set={setCustomerComp}
-          change={changeDropdown}
-          description={"Investigates and takes action to meet customers' current and future needs."}
-        />
-
-
-        <Dropdown
-          competency={"Representing the Organisation"}
-          name={"representingComp"}
-          state={representingComp}
-          set={setRepresentingComp}
-          change={changeDropdown}
-          description={"Projects a positive and professional image of the Organisation in all contacts."}
-        />
+        { Object.keys(competencies).map(key => (
+          <Dropdown
+            name={key}
+            value={competencies[key].value}
+            competency={competencies[key].name}
+            description={competencies[key].description}
+            change={updateCompetenceValue}
+          />
+        ))
+        }
 
         { !loading && 
           <button onClick={sendPrompt}>
