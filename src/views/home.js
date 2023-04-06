@@ -1,40 +1,30 @@
 import styles from '../styles/home.module.css';
-import { useRef, useState, useContext, useEffect } from 'react';
-import { AppContext } from '../App';
+import { useRef, useState, useEffect } from 'react';
 import Dropdown from '../components/dropdown';
 import StudyDropdown from '../components/studydropdown';
 import EducationDropdown from '../components/educationdropdown';
 
 const Home = () => {
 
-  const { random } = useContext(AppContext);
-
+  // State for input values
   const [title, setTitle] = useState(undefined);
   const [years, setYears] = useState(undefined);
   const [location, setLocation] = useState(undefined);
   const [email, setEmail] = useState(undefined);
 
+  // State for dropdown input values
   const [education, setEducation] = useState(0);
   const [study, setStudy] = useState(0);
 
-  const [actionComp, setActionComp] = useState(0);
-  const [composureComp, setComposureComp] = useState(0);
-  const [convictionComp, setConvictionComp] = useState(0);
-  const [creativityComp, setCreativityComp] = useState(0);
-  const [ambiguityComp, setAmbiguityComp] = useState(0);
-  const [integrityComp, setIntegrityComp] = useState(0);
-  const [intellectualComp, setIntellectualComp] = useState(0);
-  const [confidenceComp, setConfidenceComp] = useState(0);
-  const [developmentComp, setDevelopmentComp] = useState(0);
-  const [decisionComp, setDecisionComp] = useState(0);
-  const [resultsComp, setResultsComp] = useState(0);
-  const [systemsComp, setSystemsComp] = useState(0);
-  const [performanceComp, setPerformanceComp] = useState(0);
-  const [coordinatingComp, setCoordinatingComp] = useState(0);
-  const [solvingComp, setSolvingComp] = useState(0);
-  const [customerComp, setCustomerComp] = useState(0);
-  const [representingComp, setRepresentingComp] = useState(0);
+  // State for loading button, hidden button URL and PDF filename
+  const [loading, setLoading] = useState(undefined);
+  const [buttonURL, setButtonURL] = useState('');
+  const [filename, setFilename] = useState('');
 
+  // Ref to hidden download button
+  const downloadPDFRef = useRef(null);
+
+  // State for compentencies dropdowns
   const [competencies, setCompetencies] = useState({
     actionComp: {
       value: 0,
@@ -122,8 +112,8 @@ const Home = () => {
       description: "The ability to represent oneself or an organization in a positive and professional manner."
     }
   });
-  
 
+  // Function to update competency state upon individual competency changing
   function updateCompetenceValue(key, value) {
     setCompetencies(prevState => ({
       ...prevState,
@@ -133,14 +123,8 @@ const Home = () => {
       }
     }));
   }
-  const [loading, setLoading] = useState(undefined);
-  const [buttonURL, setButtonURL] = useState('');
-  const [filename, setFilename] = useState('');
 
-  const downloadPDFRef = useRef(null);
-
-
-
+  // Function to change state of indivdual dropdowns (education and study)
   const changeDropdown = (e, set) => {
     set(e.target.value);
   }
@@ -191,8 +175,6 @@ const Home = () => {
 
       // Call backend with above request
       const response = await fetch("http://localhost:5000/jobdescription", request);
-
-      console.log('Reponse fetched');
 
       // Throw error if request fails
       if (!response.ok) {
