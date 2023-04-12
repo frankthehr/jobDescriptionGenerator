@@ -97,10 +97,6 @@ const Home = () => {
         throw new Error("Something went wrong!")
       }
 
-      const pdfdata = await response.pdf;
-
-      console.log(pdfdata);
-
       // Create unique hash
       const hash = randomHash();
 
