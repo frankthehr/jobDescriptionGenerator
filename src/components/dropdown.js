@@ -40,8 +40,10 @@ const Dropdown = ({ competency, description, name, value, change }) => {
         <option value={3}>Level 3</option>
         <option value={4}>Level 4</option>
       </select>
+
     </div>
   )
 }
 
 export default Dropdown;
+
