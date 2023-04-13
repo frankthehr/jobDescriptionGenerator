@@ -11,7 +11,6 @@ const Home = () => {
   // State for input values
   const [title, setTitle] = useState(undefined);
   const [years, setYears] = useState(undefined);
-  const [email, setEmail] = useState(undefined);
   const [location, setLocation] = useState(undefined);
 
   // State for dropdown input values
@@ -80,7 +79,6 @@ const Home = () => {
         body: JSON.stringify({
           title,
           years,
-          email,
           study,
           location,
           education,
@@ -160,16 +158,6 @@ const Home = () => {
             id="jd-location"
             placeholder="Dublin, Ireland"
             onChange={(e) => setLocation(e.target.value)}
-          />
-        </div>
-
-        <div className={styles.email}>
-          <label htmlFor="jd-email">Contact Email</label>
-          <input
-            type="text"
-            id="jd-email"
-            placeholder="youremail@email.com"
-            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
