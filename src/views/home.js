@@ -1,6 +1,7 @@
 import styles from '../styles/home.module.css';
 import { useRef, useState, useEffect } from 'react';
 import Dropdown from '../components/dropdown';
+import LoadingButton from '../components/loadingbutton';
 import StudyDropdown from '../components/studydropdown';
 import EducationDropdown from '../components/educationdropdown';
 import competenciesData from '../data/competencies';
@@ -70,7 +71,6 @@ const Home = () => {
   const sendPrompt = async () => {
 
     try {
-      console.log('Starting')
       setLoading(true);
 
       // Create POST request with body containing state data
@@ -108,8 +108,6 @@ const Home = () => {
 
       // Reads response stream and returns a promise which resolves with an Array Buffer (An array buffer is a low-level data structure in programming that represents a fixed-length, contiguous memory area of raw binary data. It is a type of buffer that is commonly used for handling large amounts of data efficiently, especially when dealing with multimedia data such as images, audio, and video.)
       const responseBuffer = await response.arrayBuffer();
-
-      console.log(responseBuffer);
 
       // Create blob with PDF MIME type from response array buffer. A blob (binary short object) is a data type used to represent large binary data like images or files.
       const pdfBlob = new Blob([responseBuffer], {type: 'application/pdf'});
@@ -155,18 +153,6 @@ const Home = () => {
           />
         </div>
 
-        <EducationDropdown
-          state={education}
-          set={setEducation}
-          change={changeDropdown}
-        />
-
-        <StudyDropdown
-          state={study}
-          set={setStudy}
-          change={changeDropdown}
-        />
-
         <div className={styles.location}>
           <label htmlFor="jd-location">Location of the role</label>
           <input
@@ -187,6 +173,18 @@ const Home = () => {
           />
         </div>
 
+        <EducationDropdown
+          state={education}
+          set={setEducation}
+          change={changeDropdown}
+        />
+
+        <StudyDropdown
+          state={study}
+          set={setStudy}
+          change={changeDropdown}
+        />
+
         { Object.keys(competencies).map(key => (
           <Dropdown
             name={key}
@@ -205,15 +203,7 @@ const Home = () => {
         }
 
         { loading && 
-          <button>
-            <span>Creating</span>
-            <svg width="24" height="24" viewBox="0 0 24 24">
-              <path fill="none" stroke="currentColor" strokeDasharray="15" strokeDashoffset="15" strokeLinecap="round" strokeWidth="2" d="M12 3C16.9706 3 21 7.02944 21 12">
-                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/>
-                <animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/>
-              </path>
-            </svg>
-          </button>
+          <LoadingButton />
         }
 
         <a 
